@@ -3,6 +3,7 @@ import axios from "axios";
 import * as Constants from "./config";
 import Button from 'react-bootstrap/Button';
 import * as Response from "./response";
+import { ListFormat } from "typescript";
 
 
 function Api() {
@@ -15,19 +16,20 @@ function Api() {
         //     setWeather(res.data)
         // });
         return (
-            setWeather([Response.RESPONSE])
+            setWeather(Response.RESPONSE.list)
         )
     };
 
 
-    console.log(forecasts)
+    console.log(forecasts[0])
 
     return (
         <table>
             <thead><tr><th>City</th></tr></thead>
             <tbody>
-                {forecasts.map(forecast => <tr><td>{forecast.temp}</td></tr>)}
                 <Button variant="success" onClick={() => req()}>Request Weather</Button>
+                {forecasts.map(forecast => <tr key={forecast.dt}><td>{forecast.dt_txt}</td></tr>)}
+
             </tbody>
         </table>
     )

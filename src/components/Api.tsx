@@ -6,16 +6,16 @@ import * as Response from "./response";
 
 
 function Api() {
-    const [forecasts, setWeather] = React.useState({});
+    const [forecasts, setWeather] = React.useState([]);
 
 
     let req = () => {
         // axios.get(Constants.LINK).then(res => {
         //     console.log('res:', res.data);
-        //     setCountries(res.data)
+        //     setWeather(res.data)
         // });
         return (
-            setWeather(Response)
+            setWeather([Response.RESPONSE])
         )
     };
 
@@ -23,16 +23,13 @@ function Api() {
     console.log(forecasts)
 
     return (
-        <>
-            <div>
-                {JSON.stringify(forecasts)}
-                <Button variant="success" onClick={() => req()}>Request</Button>
-            </div>
+        <table>
+            <thead><tr><th>City</th></tr></thead>
             <tbody>
-                {forecasts.map(forecast => <td>{forecast.test}</td>)}
-            
+                {forecasts.map(forecast => <tr><td>{forecast.temp}</td></tr>)}
+                <Button variant="success" onClick={() => req()}>Request Weather</Button>
             </tbody>
-        </>
+        </table>
     )
 };
 

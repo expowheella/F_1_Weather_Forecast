@@ -1,3 +1,6 @@
+
+![Alt text](Screenshot.jpeg?raw=true "Title")
+
 ## <u>Configuring a project</u>
 
 In the project directiory:

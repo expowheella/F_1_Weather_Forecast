@@ -1,6 +1,8 @@
 import * as React from "react";
 import Button from 'react-bootstrap/Button';
+import { YMaps, Map } from "react-yandex-maps";
 
+let center = []
 
 var options = {
   enableHighAccuracy: true,
@@ -10,11 +12,8 @@ var options = {
 
 function success(pos) {
   var crd = pos.coords;
-
-  console.log('Ваше текущее местоположение:');
-  console.log(`Широта: ${crd.latitude}`);
-  console.log(`Долгота: ${crd.longitude}`);
-  console.log(`Плюс-минус ${crd.accuracy} метров.`);
+  center.push(parseFloat(crd.latitude.toFixed(2)));
+  center.push(parseFloat(crd.longitude.toFixed(2)));
 };
 
 function error(err) {
@@ -24,17 +23,39 @@ function error(err) {
 
 function Geolocation() {
 
-  let coords = () => navigator.geolocation.getCurrentPosition(success, error, options) 
-  console.log(coords)
+  function Coords() {
+    return (
+      navigator.geolocation.getCurrentPosition(success, error, options)
+    )
+  };
+
+  // Для первоначальной загрузки карты
+  Coords()
 
   return (
-    <div>
-      Hello
-      
-      {/* вызываем функцию coords() при нажатии на кнопку, которая вызывает функцию getCurrentPosition() */}
-      <Button variant="success" onClick={() => coords()}>Request</Button>
-    </div>
+    <>
+      <div>
+        {/* вызываем функцию coords() при нажатии на кнопку, которая вызывает функцию getCurrentPosition() */}
+        <Button variant="success" onClick={() => Coords()}>Request GEO</Button>
+        <YMaps>
+          <div>My awesome application with maps!</div>
 
-  )};
+          <Map
+            state={{
+              center,
+              zoom: 9,
+              controls: []
+            }}
+            width="50vw"
+            height="50vh"
+          >
+          </Map>
 
-  export default Geolocation;
+        </YMaps>
+      </div>
+    </>
+
+  )
+};
+
+export default Geolocation;

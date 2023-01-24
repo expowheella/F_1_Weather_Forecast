@@ -3,12 +3,11 @@ import Geolocation from "./Geolocation";
 import Api from "./Api";
 
 
-
 function App() {
     return (
-        <>  
-            <Geolocation />
+        <>
             <Api />
+            <Geolocation />
             <h1>Hello</h1>
         </>
     )

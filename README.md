@@ -67,6 +67,10 @@ In the project directiory:
 
 <hr>
 
+> Install: react-yandex-maps
+
+### `npm install --save react-yandex-maps`
+in my case: `npm install --save react-yandex-maps`
 
 
 
